@@ -10,7 +10,10 @@
 
 (defn index-page []
   (html5
-    [:html {:an-app ""}
+    [:html {:ng-app ""}
      (headerTempl "PicMi")
      [:body
-        [:h1 {:id "myId"}"Hello World from template"]]]))
+      [:div
+       [:label "Name :"]
+       [:input {:type "text" :ng-model "yourName" :placeholder "Enter a name here"}]
+       [:h1 "Hello {{yourName}} !"]]]]))
