@@ -10,9 +10,6 @@
 (defroutes app-routes
   (GET "/" [] (index-page))
 
-  (GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
-       (str "<h1>Hello user   " id "</h1>"))
-
   (GET "/insert" []
        (insertDoc)
        (index-page))
@@ -32,4 +29,10 @@
 (def app
   (->(handler/site app-routes)
      (wrap-base-url)))
+
+
+
+ ;; not in use might use it as in example
+  (GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
+       (str "<h1>Hello user   " id "</h1>"))
 
