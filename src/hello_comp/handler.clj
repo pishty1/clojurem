@@ -1,14 +1,14 @@
 (ns hello-comp.handler
   (:use compojure.core
         hello-comp.db
-        hello_comp.views
+        hello_comp.views.displays
         [hiccup.middleware :only (wrap-base-url)])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [monger.core :as mg]))
 
 (defroutes app-routes
-  (GET "/" [] (index-page))
+  (GET "/" [] (show-form))
 
   (GET "/insert" []
        (insertDoc)
