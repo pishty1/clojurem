@@ -11,7 +11,6 @@
       ;;[:meta {:name "viewport" :content "width=device-width, initial-scale=1, maximum-scale=1"}]
       [:title title]
   (include-css "http://fonts.googleapis.com/css?family=Sigmar+One&v1")
-  (include-css "/css/style.css")
   (include-css "/css/bootstrap.min.css")
   (include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js")]
   [:body

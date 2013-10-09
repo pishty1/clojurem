@@ -24,8 +24,13 @@
       [:div {:class "control-group"}
        (label {:class "control-label"} "skill" "enter a skill")
        [:div {:class "controls"}
-        (text-field {:class "input-xlarge"} "skill")
-        (submit-button "SKILLS!")]])])
+        (text-field {:class "input-xlarge"} "skill")]]
+
+      [:div {:class "control-group"}
+      (label {:class "control-label"} "skill" "enter a skill")
+
+        [:div {:class "controls"}
+        (submit-button {:class "btn btn-primary"} "SKILLS!")]])])
 
 (defn show-form []
   (layout/common "PICMI HEADER" (skills-form)))

@@ -20,4 +20,3 @@
 ;;return all documents
 (defn returnAll []
   (mc/find-maps "documents"))
-
