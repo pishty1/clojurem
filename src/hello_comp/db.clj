@@ -14,6 +14,10 @@
 (mg/set-db! (mg/get-db "pishtydb"))
 
 ;; returns a write result
-(defn insertDoc []
-  (mc/insert "documents" {:name "John" :age 30}))
+(defn insertDoc [uname age]
+  (mc/insert "documents" {:name uname :age age}))
+
+;;return all documents
+(defn returnAll []
+  (mc/find-maps "documents"))
 

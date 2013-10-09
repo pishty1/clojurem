@@ -14,6 +14,8 @@
        (insertDoc)
        (index-page))
 
+  (GET "/getAll" []
+       (println (returnAll)))
 
   (route/resources "/")
   (route/not-found "Not Found"))
@@ -32,7 +34,6 @@
 
 
 
- ;; not in use might use it as in example
+ ;; not in use might use it as an example
   (GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
        (str "<h1>Hello user   " id "</h1>"))
-
