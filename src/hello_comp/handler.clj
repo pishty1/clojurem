@@ -8,7 +8,7 @@
             [monger.core :as mg]))
 
 (defroutes app-routes
-  (GET "/" [] (show-form))
+  (GET "/" [] (show-form-simple))
 
   (GET "/insert" []
        (insertDoc)

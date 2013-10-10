@@ -12,7 +12,7 @@
       [:title title]
   (include-css "http://fonts.googleapis.com/css?family=Sigmar+One&v1")
   (include-css "/css/bootstrap.min.css")
-  (include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js")]
+  (include-js "/js/angular.min.js")]
   [:body
     [:div {:id "header"}
       [:h1 {:class "container"} "PICMI"]]
