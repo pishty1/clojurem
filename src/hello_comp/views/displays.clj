@@ -44,14 +44,14 @@
   [:div {:class "control-group"}
      (label {:class "control-label"} skill skill)
      [:div {:class "controls"}
-      (label {:class "radio inline"} "radios-0"
-         (conj (radio-button {:id "radios-0"} skill true  "1") "noobie"))
-      (label {:class "radio inline"} "radios-1"
-         (conj (radio-button {:id "radios-1"} skill false "2") "alright"))
-      (label {:class "radio inline"} "radios-2"
-         (conj (radio-button {:id "radios-2"} skill false "3") "pretty good"))
-      (label {:class "radio inline"} "radios-3"
-         (conj (radio-button {:id "radios-3"} skill false "4") "call me Gandalf"))]])
+      (label {:class "radio inline"} (str "radios-0"  skill)
+         (conj (radio-button {:id (str "radios-0" skill)} skill true  "1") "noobie"))
+      (label {:class "radio inline"} (str "radios-1"  skill)
+         (conj (radio-button {:id (str "radios-1"  skill)} skill false "2") "alright"))
+      (label {:class "radio inline"} (str "radios-2"  skill)
+         (conj (radio-button {:id (str "radios-2" skill)} skill false "3") "pretty good"))
+      (label {:class "radio inline"} (str "radios-3"  skill)
+         (conj (radio-button {:id (str "radios-3" skill)} skill false "4") "call me Gandalf"))]])
 
 
 (defn skill-radio []
@@ -68,6 +68,3 @@
 
 (defn show-form-simple []
   (layout/common "PICMI HEADER" (skill-radio)))
-
-
-

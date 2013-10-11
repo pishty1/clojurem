@@ -10,7 +10,6 @@
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       ;;[:meta {:name "viewport" :content "width=device-width, initial-scale=1, maximum-scale=1"}]
       [:title title]
-  (include-css "http://fonts.googleapis.com/css?family=Sigmar+One&v1")
   (include-css "/css/bootstrap.min.css")
   (include-js "/js/angular.min.js")]
   [:body
