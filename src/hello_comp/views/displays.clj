@@ -32,9 +32,6 @@
         [:div {:class "controls"}
         (submit-button {:class "btn btn-primary"} "SKILLS!")]])])
 
-(defn cb1 []
-  ~(check-box {:type "check-box" :id "checkboxes-0" :value "1"} "checkboxes"))
-
 (defn multi-skill-form []
   ([:div {:class "control-group"}
     (label {:class "control-label"} "skill-cb" "Java")
@@ -43,21 +40,30 @@
      [:div {:class "controls"}
         (text-field {:class "input-xlarge"} "<input type='checkbox' name='checkboxes' id='checkboxes-0' value='1'")]]]))
 
+(defn render-row [skill]
+  [:div {:class "control-group"}
+     (label {:class "control-label"} skill skill)
+     [:div {:class "controls"}
+      (label {:class "radio inline"} "radios-0"
+         (conj (radio-button {:id "radios-0"} skill true  "1") "noobie"))
+      (label {:class "radio inline"} "radios-1"
+         (conj (radio-button {:id "radios-1"} skill false "2") "alright"))
+      (label {:class "radio inline"} "radios-2"
+         (conj (radio-button {:id "radios-2"} skill false "3") "pretty good"))
+      (label {:class "radio inline"} "radios-3"
+         (conj (radio-button {:id "radios-3"} skill false "4") "call me Gandalf"))]])
+
+
 (defn skill-radio []
   (form-to {:class "form-horizontal"}[:post "/"]
    [:fieldset
     [:label "Skills Form"]
+    (map render-row ["Clojure" "Scala" "Java" "JBoss"])
     [:div {:class "control-group"}
-     (label {:class "control-label"} "radios" "Clojure")
+     (label {:class "control-label"} "singlebutton" "")
      [:div {:class "controls"}
-      (label {:class "radio inline"} "radios-0"
-         (conj (radio-button {:id "radios-0"} "radios" true  "1") "noobie"))
-      (label {:class "radio inline"} "radios-1"
-         (conj (radio-button {:id "radios-1"} "radios" false "2") "alright"))
-      (label {:class "radio inline"} "radios-2"
-         (conj (radio-button {:id "radios-2"} "radios" false "3") "pretty good"))
-      (label {:class "radio inline"} "radios-3"
-         (conj (radio-button {:id "radios-3"} "radios" false "4") "call me Gandalf"))]]]))
+      (submit-button {:id "singlebutton" :name "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
+
 
 
 (defn show-form-simple []
