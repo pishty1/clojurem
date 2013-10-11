@@ -35,7 +35,7 @@
 
 
 (defn skill-radio []
-  (form-to {:class "form-horizontal"}[:get "/"]
+  (form-to {:class "form-horizontal"}[:get "/skillform"]
    [:fieldset
     [:label "Skills Form"]
     (map render-row ["Clojure" "Scala" "Java" "JBoss"])
