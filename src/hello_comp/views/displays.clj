@@ -18,40 +18,18 @@
        [:input {:type "text" :ng-model "yourName" :placeholder "Enter a name here"}]
        [:h1 "Hello {{yourName}} !"]]]]))
 
-(defn skills-form-simple []
-  [:div {:id "shout-form" :class "sixteen columns alpha omega"}
-    (form-to {:class "form-horizontal"}[:post "/"]
-      [:div {:class "control-group"}
-       (label {:class "control-label"} "skill" "enter a skill")
-       [:div {:class "controls"}
-        (text-field {:class "input-xlarge"} "skill")]]
 
-      [:div {:class "control-group"}
-      (label {:class "control-label"} "skill" "enter a skill")
+(defn skill-label [skill level]
+  (label {:class "radio inline"} (str skill "-" level)
+         (conj (radio-button {:id (str skill "-" level)} skill false  "1") level)))
 
-        [:div {:class "controls"}
-        (submit-button {:class "btn btn-primary"} "SKILLS!")]])])
-
-(defn multi-skill-form []
-  ([:div {:class "control-group"}
-    (label {:class "control-label"} "skill-cb" "Java")
-    [:div {:class "controls"}
-     (label {:class "checkbox inline"} "checkboxes-0" "check")
-     [:div {:class "controls"}
-        (text-field {:class "input-xlarge"} "<input type='checkbox' name='checkboxes' id='checkboxes-0' value='1'")]]]))
-
+;;this function now works but dont like the way the parameters are passed in, skill is coppied everywhere
 (defn render-row [skill]
   [:div {:class "control-group"}
      (label {:class "control-label"} skill skill)
      [:div {:class "controls"}
-      (label {:class "radio inline"} (str "radios-0"  skill)
-         (conj (radio-button {:id (str "radios-0" skill)} skill true  "1") "noobie"))
-      (label {:class "radio inline"} (str "radios-1"  skill)
-         (conj (radio-button {:id (str "radios-1"  skill)} skill false "2") "alright"))
-      (label {:class "radio inline"} (str "radios-2"  skill)
-         (conj (radio-button {:id (str "radios-2" skill)} skill false "3") "pretty good"))
-      (label {:class "radio inline"} (str "radios-3"  skill)
-         (conj (radio-button {:id (str "radios-3" skill)} skill false "4") "call me Gandalf"))]])
+      (map skill-label [skill    skill     skill         skill]
+                       ["noobie" "alright" "pretty good" "call me Gandalf"])]])
 
 
 (defn skill-radio []
@@ -63,7 +41,6 @@
      (label {:class "control-label"} "singlebutton" "")
      [:div {:class "controls"}
       (submit-button {:id "singlebutton" :name "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
-
 
 
 (defn show-form-simple []
