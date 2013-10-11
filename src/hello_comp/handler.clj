@@ -10,7 +10,7 @@
 (defroutes app-routes
   (GET "/" [] (show-form-simple))
 
-  (GET ["/skillform", :id] {{bb :id} :params} (print bb))
+  (GET ["/skillform"] {params :params} (str params))
 
   (GET "/insert" []
        (insertDoc)
