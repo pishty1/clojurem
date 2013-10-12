@@ -28,7 +28,7 @@
       (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
 
 (defn indexP []
-  ([:label "Skills Form"]))
+  (html5 [:div {:id "header2"} "hello"]))
 
 
 (defn show-form-simple []
