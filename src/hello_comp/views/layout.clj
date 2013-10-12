@@ -2,19 +2,19 @@
   (:use [hiccup.core :only (html)]
         [hiccup.page :only (html5 include-css include-js)]))
 
-(defn common [title & body]
+(defn common [& body]
   (html5
    [:html {:ng-app ""}
     [:head
       [:meta {:charset "utf-8"}]
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-      ;;[:meta {:name "viewport" :content "width=device-width, initial-scale=1, maximum-scale=1"}]
-      [:title title]
+      [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+      [:title "PICMI"]
   (include-css "/css/bootstrap.min.css")
   (include-js "/js/angular.min.js")]
-  [:body
+  [:body {:style ""}
     [:div {:id "header"}
-      [:h1 {:class "container"} "PICMI"]]
+      [:h1 {:class "container"} "PICMI H1"]]
     [:div {:id "content" :class "container"} body]]]))
 
 (defn four-oh-four []

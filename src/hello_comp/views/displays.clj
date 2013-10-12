@@ -3,7 +3,6 @@
         [hiccup.form :only (form-to label text-field submit-button check-box radio-button)])
   (:require [hello_comp.views.layout :as layout]))
 
-
 (defn skill-label [skill level value checked?]
   (label {:class "radio inline"} (str skill "-" level)
          (conj (radio-button {:id (str skill "-" level)} skill checked?  value) level)))
@@ -16,7 +15,7 @@
       (map skill-label [skill    skill     skill         skill]
                        ["noobie" "alright" "pretty good" "call me Gandalf"]
                        [1        2         3             4]
-                       [true    false     false          false])]])
+                       [true     false     false         false])]])
 
 
 (defn skill-radio []
@@ -28,6 +27,14 @@
      [:div {:class "controls"}
       (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
 
+(defn indexP []
+  ([:label "Skills Form"]))
+
 
 (defn show-form-simple []
-  (layout/common "PICMI HEADER" (skill-radio)))
+  (layout/common (skill-radio)))
+
+
+
+(defn indexpage []
+  (layout/common (indexP)))

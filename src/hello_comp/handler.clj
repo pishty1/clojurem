@@ -8,13 +8,15 @@
             [monger.core :as mg]))
 
 (defroutes app-routes
-  (GET "/" [] (show-form-simple))
+  (GET "/" [] (indexpage))
 
-  (GET ["/skillform"] {params :params} (str params))
+  (GET "/showForm" [] (show-form-simple))
 
-  (GET "/insert" []
-       (insertDoc)
-       (index-page))
+  (GET ["/skillform"] {{jb :JBoss jv :Java} :params} (str "the jbeezy is " jb " and the javaaa is " jv))
+
+  ;;(GET "/insert" []
+     ;;  (insertDoc)
+      ;; (index-page))
 
   (GET "/getAll" []
        (println (returnAll)))
