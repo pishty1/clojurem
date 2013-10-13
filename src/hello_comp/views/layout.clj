@@ -3,15 +3,16 @@
         [hiccup.element :only (link-to)]
         [hiccup.page :only (html5 include-css include-js)]))
 
-(defn common [& body]
+(defn common [header & body]
   (html5
-   [:html {:ng-app ""}
+   [:html {:lang "en"}
     [:head
       [:meta {:charset "utf-8"}]
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
       [:title "PICMI"]
   (include-css "/css/bootstrap.min.css")
+  (include-css "/css/navbar-fixed-top.css")
   (include-js "/js/angular.min.js")]
   [:body {:style ""}
     [:div {:class "navbar navbar-default navbar-fixed-top"}
@@ -27,9 +28,11 @@
        [:ul {:class "nav navbar-nav navbar-right"}
         [:li
          (link-to "/login" "Login")]]]]]
-    [:div {:id "header"}
-      [:h1 {:class "container"} "PICMI H1"]]
-    [:div {:id "content" :class "container"} body]]]))
+    [:div {:class "container"}
+      [:div {:class "jumbotron"}
+       [:div {:class "row"}
+        [:div {:class "col-lg-12"}
+         [:h1 {:id "type"} header]]]]]]]))
 
 (defn four-oh-four []
   (common "Page Not Found"

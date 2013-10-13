@@ -28,7 +28,7 @@
       (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
 
 (defn indexP []
-  (html5 [:div {:id "header2"} "hello"]))
+  (html5 [:div "hello"]))
 
 
 (defn show-form-simple []
@@ -37,4 +37,4 @@
 
 
 (defn indexpage []
-  (layout/common (indexP)))
+  (layout/common "PicMi"(indexP)))
