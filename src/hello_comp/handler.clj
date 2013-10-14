@@ -30,7 +30,7 @@
       ;; (index-page))
 
   (GET "/login" []
-       (println (returnAll)))
+       (loginpage true))
 
   (route/resources "/")
   (route/not-found "Not Found"))

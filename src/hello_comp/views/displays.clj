@@ -1,7 +1,7 @@
 (ns hello_comp.views.displays
   (:use [compojure.core]
         [hiccup core page element]
-        [hiccup.form :only (form-to label text-field submit-button check-box radio-button)])
+        [hiccup.form :only (form-to label text-field submit-button check-box radio-button password-field)])
   (:require [hello_comp.views.layout :as layoutT]))
 
 (defn skill-label [skill level value checked?]
@@ -34,7 +34,12 @@
   (html5 [:div (str "hello " counter)]))
 
 (defn login-form []
-  ())
+  (form-to {:class "form-signin"} [:get "/userlogin"]
+   [:h2 {:class "form-signin-heading"} "Please sign in"]
+   (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
+   (password-field {:class "form-control" :placeholder "Password"} "password")
+   (check-box "remember-cb" false "remember-me")
+   (label {:class "checkbox"} "remember-cb" "Remember Me")))
 
 
 (defn show-form-simple []
@@ -46,4 +51,4 @@
 
 
 (defn loginpage [logedin?]
-  (layoutT/common ()))
+  (layoutT/common (login-form)))
