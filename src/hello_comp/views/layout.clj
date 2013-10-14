@@ -3,7 +3,7 @@
         [hiccup.element :only (link-to)]
         [hiccup.page :only (html5 include-css include-js)]))
 
-(defn common [header & body]
+(defn common [& body]
   (html5
    [:html {:lang "en"}
     [:head
@@ -28,11 +28,7 @@
        [:ul {:class "nav navbar-nav navbar-right"}
         [:li
          (link-to "/login" "Login")]]]]]
-    [:div {:class "container"}
-      [:div {:class "jumbotron"}
-       [:div {:class "row"}
-        [:div {:class "col-lg-12"}
-         [:h1 {:id "type"} header]]]]]]]))
+    [:div {:class "container"} body]]]))
 
 (defn four-oh-four []
   (common "Page Not Found"

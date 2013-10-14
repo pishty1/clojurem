@@ -6,7 +6,8 @@
                  [hiccup "1.0.4"]
                  [hiccup-bootstrap "0.1.2"]
                  [com.novemberain/monger "1.5.0"]
-                 [ring/ring-jetty-adapter "1.2.0"]]
+                 [ring "1.2.0"]
+                 [sandbar "0.3.3"]]
   :plugins [[lein-ring "0.8.7"]
             [codox "0.6.6"]]
   :ring {:handler hello-comp.handler/app}

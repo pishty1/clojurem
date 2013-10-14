@@ -2,15 +2,19 @@
   (:use compojure.core
         hello-comp.db
         hello_comp.views.displays
+        ring.util.response
+        ring.middleware.session
         [hiccup.middleware :only (wrap-base-url)])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [monger.core :as mg]))
 
 (defroutes app-routes
-  (GET "/" [] (indexpage))
-
-  (GET "/showForm" [] (show-form-simple))
+  (GET "/" {session :session}
+      (let [count   (:count session 0)
+        session (assoc session :count (inc count))]
+    (-> (response (indexpage count))
+        (assoc :session session))))
 
   (GET ["/skillform"] {{jb :JBoss jv :Java} :params} (str "the jbeezy is " jb " and the javaaa is " jv))
 
@@ -33,7 +37,7 @@
 
 
 (def app
-  (->(handler/site app-routes)
+  (->(wrap-session (handler/site app-routes))
      (wrap-base-url)))
 
 

@@ -1,7 +1,8 @@
 (ns hello_comp.views.displays
-  (:use [hiccup core page]
+  (:use [compojure.core]
+        [hiccup core page element]
         [hiccup.form :only (form-to label text-field submit-button check-box radio-button)])
-  (:require [hello_comp.views.layout :as layout]))
+  (:require [hello_comp.views.layout :as layoutT]))
 
 (defn skill-label [skill level value checked?]
   (label {:class "radio inline"} (str skill "-" level)
@@ -27,14 +28,34 @@
      [:div {:class "controls"}
       (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
 
-(defn indexP []
-  (html5 [:div "hello"]))
 
+
+(defn indexP [counter]
+  (html5 [:div (str "hello " counter)]))
+
+(defn layout [title counter link]
+  [:div
+   [:h2 (str title " Counter")]
+   [:div (str "The current value of counter is " counter)]
+   [:div (link-to "/" "Home")]
+   [:div link]])
+
+(defn functional-handler
+  "Functional style of working with a session."
+  [request]
+  (let [counter (if-let [counter (-> request :session :counter)]
+                  (+ counter 1)
+                  1)]
+    {:status 200
+     :headers {"Content-Type" "text/html"}
+     :body (html
+            (layout "Functional" counter (link-to "/stateful" "Stateful")))
+     :session {:counter counter}}))
 
 (defn show-form-simple []
-  (layout/common (skill-radio)))
+  (layoutT/common (skill-radio)))
 
 
 
-(defn indexpage []
-  (layout/common "PicMi"(indexP)))
+(defn indexpage [counter]
+  (layoutT/common (indexP counter)))
