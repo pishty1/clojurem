@@ -9,6 +9,13 @@
             [compojure.route :as route]
             [monger.core :as mg]))
 
+;; using MongoOptions allows fine-tuning connection parameters,
+;; like automatic reconnection (highly recommended for production environment)
+(let [^MongoOptions opts (mg/mongo-options :threads-allowed-to-block-for-connection-multiplier 300)
+      ^ServerAddress sa  (mg/server-address "127.0.0.1" 27017)]
+  (mg/connect! sa opts))
+
+
 (defroutes app-routes
   (GET "/" {session :session}
       (let [count   (:count session 0)
@@ -22,22 +29,16 @@
      ;;  (insertDoc)
       ;; (index-page))
 
-  (GET "/getAll" []
+  (GET "/login" []
        (println (returnAll)))
 
   (route/resources "/")
   (route/not-found "Not Found"))
 
 
-;; using MongoOptions allows fine-tuning connection parameters,
-;; like automatic reconnection (highly recommended for production environment)
-(let [^MongoOptions opts (mg/mongo-options :threads-allowed-to-block-for-connection-multiplier 300)
-      ^ServerAddress sa  (mg/server-address "127.0.0.1" 27017)]
-  (mg/connect! sa opts))
-
-
 (def app
-  (->(wrap-session (handler/site app-routes))
+  (->(handler/site app-routes)
+     (wrap-session {:cookie-attrs {:max-age 60 :secure true}})
      (wrap-base-url)))
 
 

@@ -33,29 +33,17 @@
 (defn indexP [counter]
   (html5 [:div (str "hello " counter)]))
 
-(defn layout [title counter link]
-  [:div
-   [:h2 (str title " Counter")]
-   [:div (str "The current value of counter is " counter)]
-   [:div (link-to "/" "Home")]
-   [:div link]])
+(defn login-form []
+  ())
 
-(defn functional-handler
-  "Functional style of working with a session."
-  [request]
-  (let [counter (if-let [counter (-> request :session :counter)]
-                  (+ counter 1)
-                  1)]
-    {:status 200
-     :headers {"Content-Type" "text/html"}
-     :body (html
-            (layout "Functional" counter (link-to "/stateful" "Stateful")))
-     :session {:counter counter}}))
 
 (defn show-form-simple []
   (layoutT/common (skill-radio)))
 
 
-
 (defn indexpage [counter]
   (layoutT/common (indexP counter)))
+
+
+(defn loginpage [logedin?]
+  (layoutT/common ()))
