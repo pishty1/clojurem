@@ -38,8 +38,9 @@
    [:h2 {:class "form-signin-heading"} "Please sign in"]
    (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
    (password-field {:class "form-control" :placeholder "Password"} "password")
-   (check-box "remember-cb" false "remember-me")
-   (label {:class "checkbox"} "remember-cb" "Remember Me")))
+   (label {:class "checkbox"} "remember-cb" (conj (check-box "remember-cb" false "remember-me") "Remember Me"))
+   (submit-button {:class "btn btn-lg btn-primary btn-block"} "Sign In")
+   [:span {:class "label label-info"} (link-to "/createuser" "Create an Account !")]))
 
 
 (defn show-form-simple []
@@ -52,3 +53,6 @@
 
 (defn loginpage [logedin?]
   (layoutT/common (login-form)))
+
+(defn createlogin []
+  (layoutT/common (link-to "/createuser" "Create an Account !")))
