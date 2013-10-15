@@ -32,6 +32,9 @@
   (GET "/login" []
        (loginpage true))
 
+  (GET "/registration/new" []
+       (createlogin))
+
   (route/resources "/")
   (route/not-found "Not Found"))
 

@@ -35,24 +35,28 @@
 
 (defn login-form []
   (form-to {:class "form-signin"} [:get "/userlogin"]
-   [:h2 {:class "form-signin-heading"} "Please sign in"]
+   [:h2 {:class "form-signin-heading"} "In you go"]
    (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
    (password-field {:class "form-control" :placeholder "Password"} "password")
    (label {:class "checkbox"} "remember-cb" (conj (check-box "remember-cb" false "remember-me") "Remember Me"))
    (submit-button {:class "btn btn-lg btn-primary btn-block"} "Sign In")
-   [:span {:class "label label-info"} (link-to "/createuser" "Create an Account !")]))
+   [:span {:class "label label-info"} (link-to "/registration/new" "Create an Account !")]))
 
+(defn registration-form []
+  (form-to {:class "form-signin"} [:get "/userlogin"]
+   [:h2 {:class "form-signin-heading"} "Sign Up"]
+   (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
+   (password-field {:class "form-control" :placeholder "Password"} "password")
+   (submit-button {:class "btn btn-lg btn-primary btn-block"} "Create My Account")))
 
-(defn show-form-simple []
-  (layoutT/common (skill-radio)))
-
-
-(defn indexpage [counter]
-  (layoutT/common (indexP counter)))
-
+(defn createlogin []
+  (layoutT/common (registration-form)))
 
 (defn loginpage [logedin?]
   (layoutT/common (login-form)))
 
-(defn createlogin []
-  (layoutT/common (link-to "/createuser" "Create an Account !")))
+(defn show-form-simple []
+  (layoutT/common (skill-radio)))
+
+(defn indexpage [counter]
+  (layoutT/common (indexP counter)))
