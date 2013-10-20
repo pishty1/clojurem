@@ -27,7 +27,9 @@
          (link-to "/account" "Account")]]
        [:ul {:class "nav navbar-nav navbar-right"}
         [:li
-         (link-to "/login" "Login")]]]]]
+         (link-to "/login" "Login")]
+		 [:li
+         (link-to "/registration/new" "Register")]]]]]
     [:div {:class "container"} body]]]))
 
 (defn four-oh-four []

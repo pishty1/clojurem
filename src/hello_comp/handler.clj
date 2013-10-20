@@ -6,19 +6,9 @@
         ring.middleware.session
         [hiccup.middleware :only (wrap-base-url)])
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]
-            [monger.core :as mg]))
-
-	;; using MongoOptions allows fine-tuning connection parameters,
-	;; like automatic reconnection (highly recommended for production environment)
-	(let [^MongoOptions opts (mg/mongo-options :threads-allowed-to-block-for-connection-multiplier 300)
-		  ^ServerAddress sa  (mg/server-address "127.0.0.1" 27017)]
-	  (mg/connect! sa opts))
-	  
-	  
-	  (mg/set-db! (mg/get-db "clojurem-db"))
+            [compojure.route :as route]))
   
-(defroutes app-routes [mg]
+(defroutes app-routes 
    (GET "/" {session :session}
       (let [count   (:count session 0)
         session (assoc session :count (inc count))]
@@ -35,7 +25,7 @@
        (createlogin))
 	   
 	(GET "/registerUser" [emailaddress password]
-       (mg/insert "users" { :email_address "emailaddress" :password "password" }))
+       (save-user emailaddress password))
 
    (route/resources "/")
    (route/not-found "Not Found"))

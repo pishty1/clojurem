@@ -4,6 +4,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]
                  [hiccup "1.0.4"]
+                 [lib-noir "0.7.0"]  
                  [hiccup-bootstrap "0.1.2"]
                  [com.novemberain/monger "1.5.0"]
                  [ring "1.2.0"]
