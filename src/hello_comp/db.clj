@@ -4,7 +4,6 @@
 			[noir.util.crypt :as crypt])			
   (:import [com.mongodb MongoOptions ServerAddress]))
 
-;; like automatic reconnection (highly recommended for production environment)
 (let [^MongoOptions opts (mg/mongo-options :threads-allowed-to-block-for-connection-multiplier 300)
       ^ServerAddress sa  (mg/server-address "127.0.0.1" 27017)]
   (mg/connect! sa opts))

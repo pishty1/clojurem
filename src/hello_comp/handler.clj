@@ -32,8 +32,8 @@
 
 (def app
    (->(handler/site app-routes)
-     (wrap-session {:cookie-attrs {:max-age 60 :secure true}})
-     (wrap-base-url)))
+   (wrap-session {:cookie-attrs {:max-age 60 :secure true}})
+   (wrap-base-url)))
 
 	;; not in use might use it as an example
     (GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
