@@ -43,7 +43,7 @@
    [:span {:class "label label-info"} (link-to "/registration/new" "Create an Account !")]))
 
 (defn registration-form []
-  (form-to {:class "form-signin"} [:get "/userlogin"]
+  (form-to {:class "form-signin"} [:get "/registerUser"]
    [:h2 {:class "form-signin-heading"} "Sign Up"]
    (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
    (password-field {:class "form-control" :placeholder "Password"} "password")
