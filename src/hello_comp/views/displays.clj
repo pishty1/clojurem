@@ -18,45 +18,30 @@
                        [1        2         3             4]
                        [true     false     false         false])]])
 
-
-(defn skill-radio []
-  (form-to {:class "form-horizontal"}[:get "/skillform"]
+(defn show-form-simple []
+  (layoutT/common (form-to {:class "form-horizontal"}[:get "/skillform"]
    [:fieldset
     [:label "Skills Form"]
     (map render-row ["Clojure" "Scala" "Java" "JBoss"])
     [:div {:class "control-group"}
      [:div {:class "controls"}
-      (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]]))
+      (submit-button {:id "singlebutton" :class "btn btn-primary"} "SKILLS")]]])))
 
+(defn indexpage [counter]
+  (layoutT/common(html5 [:div (str "hello " counter)])))
 
-
-(defn indexP [counter]
-  (html5 [:div (str "hello " counter)]))
-
-(defn login-form []
-  (form-to {:class "form-signin"} [:get "/userlogin"]
+(defn loginpage [logedin?]
+  (layoutT/common (form-to {:class "form-signin"} [:get "/userlogin"]
    [:h2 {:class "form-signin-heading"} "In you go"]
    (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
    (password-field {:class "form-control" :placeholder "Password"} "password")
    (label {:class "checkbox"} "remember-cb" (conj (check-box "remember-cb" false "remember-me") "Remember Me"))
    (submit-button {:class "btn btn-lg btn-primary btn-block"} "Sign In")
-   [:span {:class "label label-info"} (link-to "/registration/new" "Create an Account !")]))
+   [:span {:class "label label-info"} (link-to "/registration/new" "Create an Account !")])))
 
-(defn registration-form []
-  (form-to {:class "form-signin"} [:get "/registerUser"]
+(defn createlogin []
+  (layoutT/common (form-to {:class "form-signin"} [:get "/registerUser"]
    [:h2 {:class "form-signin-heading"} "Sign Up"]
    (text-field {:class "form-control" :placeholder "Email address" :autofocus ""} "emailaddress")
    (password-field {:class "form-control" :placeholder "Password"} "password")
-   (submit-button {:class "btn btn-lg btn-primary btn-block"} "Create My Account")))
-
-(defn createlogin []
-  (layoutT/common (registration-form)))
-
-(defn loginpage [logedin?]
-  (layoutT/common (login-form)))
-
-(defn show-form-simple []
-  (layoutT/common (skill-radio)))
-
-(defn indexpage [counter]
-  (layoutT/common (indexP counter)))
+   (submit-button {:class "btn btn-lg btn-primary btn-block"} "Create My Account"))))

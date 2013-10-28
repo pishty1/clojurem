@@ -7,8 +7,8 @@
         [hiccup.middleware :only (wrap-base-url)])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]))
-  
-(defroutes app-routes 
+
+(defroutes app-routes
    (GET "/" {session :session}
       (let [count   (:count session 0)
         session (assoc session :count (inc count))]
@@ -17,14 +17,16 @@
 
    (GET ["/skillform"] {{jb :JBoss jv :Java} :params} (str "the jbeezy is " jb " and the javaaa is " jv))
 
+   (GET "/form" []
+        (show-form-simple))
 
    (GET "/login" []
        (loginpage true))
 
    (GET "/registration/new" []
        (createlogin))
-	   
-	(GET "/registerUser" [emailaddress password]
+
+	(POST "/registerUser" [emailaddress password]
        (save-user emailaddress password))
 
    (route/resources "/")
