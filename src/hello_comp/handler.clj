@@ -9,34 +9,34 @@
             [compojure.route :as route]))
 
 (defroutes app-routes
-   (GET "/" {session :session}
-      (let [count   (:count session 0)
-        session (assoc session :count (inc count))]
-    (-> (response (indexpage count))
-        (assoc :session session))))
+  (GET "/" {session :session}
+       (let [count   (:count session 0)
+             session (assoc session :count (inc count))]
+         (-> (response (indexpage count))
+             (assoc :session session))))
 
-   (GET ["/skillform"] {{jb :JBoss jv :Java} :params} (str "the jbeezy is " jb " and the javaaa is " jv))
+  (GET ["/skillform"] {{jb :JBoss jv :Java} :params} (str "the jbeezy is " jb " and the javaaa is " jv))
 
-   (GET "/form" []
-        (show-form-simple))
+  (GET "/form" []
+       (show-form-simple))
 
-   (GET "/login" []
+  (GET "/login" []
        (loginpage true))
 
-   (GET "/registration/new" []
+  (GET "/registration/new" []
        (createlogin))
 
-	(POST "/registerUser" [emailaddress password]
-       (save-user emailaddress password))
+  (POST "/registerUser" [emailaddress password]
+        (save-user emailaddress password))
 
-   (route/resources "/")
-   (route/not-found "Not Found"))
+  (route/resources "/")
+  (route/not-found "Not Found"))
 
 (def app
-   (->(handler/site app-routes)
-   (wrap-session {:cookie-attrs {:max-age 60 :secure true}})
-   (wrap-base-url)))
+  (->(handler/site app-routes)
+     (wrap-session {:cookie-attrs {:max-age 60 :secure true}})
+     (wrap-base-url)))
 
-	;; not in use might use it as an example
-    (GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
-       (str "<h1>Hello user   " id "</h1>"))
+;; not in use might use it as an example
+(GET ["/user/:id", :id #"[0-9]+"] {{id :id} :params}
+     (str "<h1>Hello user   " id "</h1>"))
